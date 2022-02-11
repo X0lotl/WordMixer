@@ -1,30 +1,40 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class WordMixer {
 
-    static ArrayList<String> mixArraty(String input, boolean finishInput){
+    static String buildStringFromMixedArray(ArrayList<String> inputArrayList){
+        StringBuilder str = new StringBuilder();
+        for(int i = 0; i < inputArrayList.size(); i++){
+            str.append(inputArrayList.get(i) + "\\ ");
+        }
 
-        if
+        return str.toString();
     }
 
-    static String makeArrayListFromInput(String inputString){
+    static ArrayList<String> mixArray(ArrayList<String> inputArrayList){
+        Collections.shuffle(inputArrayList);
+
+        return inputArrayList;
+    }
+
+    static ArrayList<String> makeArrayListFromInput(String inputString){
         Scanner scanner = new Scanner(inputString);
-        ArrayList<String> inputArrayList = new ArrayList<String>();
-        boolean finishInput = false;
+        ArrayList<String> outputArrayList = new ArrayList<String>();
+
         while (scanner.hasNext()){
-            mixArraty(scanner.next(), finishInput);
+            outputArrayList.add(scanner.next());
         }
-        finishInput = true;
 
-        String output = " ";
-
-        return output;
+        return outputArrayList;
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        System.out.print("Please enter your sentence: ");
         String inputString = scanner.nextLine();
-        makeArrayListFromInput(inputString);
+
+        System.out.println("Your mixed sentence: " + buildStringFromMixedArray(mixArray(makeArrayListFromInput(inputString))));
     }
 }
